@@ -12,7 +12,7 @@
           <div class="avatar">
             <img src="img/logo.png" alt="Alt For Image">
           </div>
-          <h1>Name</h1>
+          <h1><?php echo "Lorinda Peoples"; ?></h1>
           <p>Contact:<br />
           <a href="mailto:">EMAIL</a></p>
           <hr />
