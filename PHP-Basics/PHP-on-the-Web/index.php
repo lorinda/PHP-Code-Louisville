@@ -23,7 +23,7 @@ $display_name = "Lorinda Peoples";
             <li><a href=""><span class="icon twitter"></span></a></li>
           </ul>
           <hr />
-          <p>Today: D, d M Y</p>
+          <p>Today: <?php echo date("F d, Y"); ?></p>
         </section>
         <section class="main">
           <h1>My First PHP Page</h1>
