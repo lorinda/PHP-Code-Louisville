@@ -33,6 +33,7 @@ $display_name = "Lorinda Peoples";
           <hr />
     
           <h2>Daily Exercise</h2>
+            <?php include "inc/exercise.php"; ?>
         </section>
     </div>
     <section class="footer text-center">
