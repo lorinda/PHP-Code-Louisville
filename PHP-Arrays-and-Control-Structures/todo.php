@@ -18,8 +18,6 @@ $list['Task 2'] = [
 //$list = array($task1, $task2);
 //var_dump($task1);
 //var_dump($task2);
-
 var_dump($list);
-
 echo $list['Task 1']['title'];
 ?>
