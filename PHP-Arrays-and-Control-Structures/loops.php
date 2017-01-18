@@ -1,5 +1,5 @@
 <?php 
-
+header('Content-type: text/plain');
 //$currentYear = date('Y');
 //$year = $currentYear - 100;
 
