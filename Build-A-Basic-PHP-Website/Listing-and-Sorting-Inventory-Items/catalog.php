@@ -1,8 +1,10 @@
 <?php 
-$catalog = array("Design Patterns", 
-                 "Forrest Gump", 
-                 "Beethoven"
-                );
+$catalog = array();
+$catalog[101] = "Design Patterns"; //book
+$catalog[201] = "Forrest Gump"; //movie
+$catalog[301] = "Beethoven"; //music
+$catalog[102] = "Clean Code"; // book
+
 $pageTitle = "Full Catalog";
 $section = null;
 
@@ -27,6 +29,13 @@ include("inc/header.php");
 <div class="section catalog page">
     <div class = "wrapper">
         <h1><?php echo $pageTitle; ?></h1>
+        <ul>
+            <?php
+                foreach($catalog as $item){
+                    echo "<li>".$item."</li>";
+                }
+            ?>
+        </ul>
     </div>
 </div>
 
