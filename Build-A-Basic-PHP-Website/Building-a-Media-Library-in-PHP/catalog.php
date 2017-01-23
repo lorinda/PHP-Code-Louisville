@@ -1,5 +1,6 @@
 <?php 
 $pageTitle = "Full Catalog";
+$section = null;
 
 //isset to correct for false categories
 if(isset($_GET["cat"])){
