@@ -1,6 +1,14 @@
 <?php 
 $pageTitle = "Full Catalog";
-include("inc/header.php"); ?>
+if($_GET["cat"] == "books"){
+    $pageTitle = "Books";
+}else if($_GET["cat"] == "movies"){
+    $pageTitle = "Movies";
+}else if($_Get["cat"] == "music"){
+    $pageTitle = "Music";
+}
+include("inc/header.php"); 
+?>
 
 <div class="section page">
     <h1>Full Catalog</h1>
