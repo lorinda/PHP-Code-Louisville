@@ -17,6 +17,10 @@ function array_category($catalog, $category){
         if (strtolower($category) == strtolower($item["category"])){
             //variable for sorting
             $sort = $item["title"];
+            $sort = ltrim($sort, "The ");
+            $sort = ltrim($sort, "A ");
+            $sort = ltrim($sort, "An ");
+            
             $output[$id] = $sort;
         }
     }
