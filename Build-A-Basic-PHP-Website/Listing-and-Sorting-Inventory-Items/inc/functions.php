@@ -7,4 +7,13 @@ function get_item_html($id, $item){
             ."</a></li>";  
     return $output;
 }     
-     
+function array_category($catelog, $category){
+    $output = array();
+    
+    foreach($catalog as $id => $item){
+        if (strtolower($category) == strtolower($item["category"]){
+            $output[] = $id;
+        }
+    }
+            return $output;
+}
