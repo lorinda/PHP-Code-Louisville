@@ -1,10 +1,4 @@
 <?php 
-$catalog = array();
-$catalog[101] = "Design Patterns"; //book
-$catalog[201] = "Forrest Gump"; //movie
-$catalog[301] = "Beethoven"; //music
-$catalog[102] = "Clean Code"; // book
-
 $pageTitle = "Full Catalog";
 $section = null;
 
