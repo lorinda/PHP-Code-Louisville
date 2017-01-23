@@ -15,7 +15,7 @@ $catalog[101] = [
         "John Vlissides"
         ],
     "publisher" => "Prentice Hall",
-    "isbn" = "978*0201633610"
+    "isbn" => "978*0201633610"
 ];
 $catalog[102] = [
     "title" => "Clean Code: A Handbook of Agile Software Craftsmanship",
