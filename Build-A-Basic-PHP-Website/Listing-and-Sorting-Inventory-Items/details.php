@@ -1,22 +1,32 @@
 <?php 
-$pageTitle = "Full Catalog";
-$section = null;
-
-//isset to correct for false categories
-if(isset($_GET["cat"])){
-    if($_GET["cat"] == "books"){
-        $pageTitle = "Books";
-        $section = "books";
-    }else if($_GET["cat"] == "movies"){
-        $pageTitle = "Movies";
-        $section = "movies";
-    }else if($_GET["cat"] == "music"){
-        $pageTitle = "Music";
-        $section = "music";
-    }    
-}
 
 include("inc/data.php");
 include("inc/functions.php");
+//isset to correct for false categories
+if(isset($_GET["id"])){
+    $id = $_GET["id"];
+    if(isset($catalog[$id])){
+        $item = $catalog[$id];
+    }
+}
+if(!isset($item)){
+    //Re-direct
+    header("location:catalog.php");
+    exit;
+}
+$pageTitle = $item["title"];
+$section = null;
 include("inc/header.php"); 
+
+
 ?>
+
+<div class="section page">
+    <div class="wrapper">
+        <div class="media-picture">
+            <span><img src="<?php echo $item["img"]; ?>" alt="<?php echo $item["title"]; ?>" />
+
+            </span>
+        </div>
+    </div>
+</div>
