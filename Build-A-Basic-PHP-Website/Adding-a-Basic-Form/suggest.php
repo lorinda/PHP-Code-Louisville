@@ -10,6 +10,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         echo "Please fill in the required fields: Name, Email, and Details";
         exit;
     }
+    if($_POST["address"] != ""){
+        echo "Bad form input";
+        exit;
+    }
+    
     echo "<pre>";
     $email_body = '';
     $email_body .= "Name: ".$name."\n";
@@ -54,7 +59,9 @@ include("inc/header.php");
                 </tr>
                 <tr style="display:none">
                     <th><label for="address_id">Address</label></th>
-                    <td><input type="text" id="address_id" name="address" /></td>
+                    <td><input type="text" id="address_id" name="address" />
+                        Please leave this field blank! Hit Submit below.</td>
+                    
                 </tr>
             </table>
             <input type="submit" value="Send" />
