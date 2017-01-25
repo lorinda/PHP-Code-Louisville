@@ -1,13 +1,13 @@
 <?php 
 //POST when form has been submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){ 
-    $name = trim($_POST["name"]);
-    $email = trim($_POST["email"]);
-    $details = trim($_POST["details"]);
+    $name = trim(filter_input(INPUT_POST,"name",FILTER_SANITIZE_STRING));
+    $email = trim(filter_input(INPUT_POST,"email",FILTER_SANITIZE_EMAIL));
+    $details = trim(filter_input(INPUT_POST,"details",FILTER_SANITIZE_SPECIAL_CHARS));
 
     //value validation
-    if($name == ""){
-        echo "Please fill in the required fields: Name";
+    if($name == "" || $email == "" || $details == ""){
+        echo "Please fill in the required fields: Name, Email, and Details";
         exit;
     }
     echo "<pre>";
