@@ -52,6 +52,10 @@ include("inc/header.php");
                     <th><label for="details_id">Suggest Item Details</label></th>
                     <td><textarea name="details" id="details_id"></textarea></td>
                 </tr>
+                <tr style="display:none">
+                    <th><label for="address_id">Address</label></th>
+                    <td><input type="text" id="address_id" name="address" /></td>
+                </tr>
             </table>
             <input type="submit" value="Send" />
             
