@@ -1,9 +1,15 @@
 <?php 
+//POST when form has been submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){ 
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $details = $_POST["details"];
+    $name = trim($_POST["name"]);
+    $email = trim($_POST["email"]);
+    $details = trim($_POST["details"]);
 
+    //value validation
+    if($name == ""){
+        echo "Please fill in the required fields: Name";
+        exit;
+    }
     echo "<pre>";
     $email_body = '';
     $email_body .= "Name: ".$name."\n";
