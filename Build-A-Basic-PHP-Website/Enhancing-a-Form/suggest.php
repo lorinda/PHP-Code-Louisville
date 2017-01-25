@@ -78,6 +78,17 @@ include("inc/header.php");
                     <td><input type="text" id="email_id" name="email" /></td>
                 </tr>
                 <tr>
+                    <th><label for="category_id">Category</label></th>
+                    <td><select id="category_id" name="category" >
+                            <option value="">Select One</option>
+                            <option value="Books">Book</option>
+                            <option value="Movies">Movie</option>
+                            <option value="Music">Music</option>
+                        </select>
+                    </td>
+                </tr>
+                
+                <tr>
                     <th><label for="details_id">Suggest Item Details</label></th>
                     <td><textarea name="details" id="details_id"></textarea></td>
                 </tr>
