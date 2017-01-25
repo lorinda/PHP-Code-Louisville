@@ -1,3 +1,4 @@
+<!--No longer used-->
 <?php
 $pageTitle = "Thank you";
 $section = null;
