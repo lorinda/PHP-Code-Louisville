@@ -12,8 +12,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $details = trim(filter_input(INPUT_POST,"details",FILTER_SANITIZE_SPECIAL_CHARS));
 
     //value validation
-    if($name == "" || $email == "" || $details == ""){
-        echo "Please fill in the required fields: Name, Email, and Details";
+    if($name == "" || $email == "" || $category == "" | $titles == ""){
+        echo "Please fill in the required fields: Name, Email, Category and Title";
         exit;
     }
     if($_POST["address"] != ""){
@@ -34,6 +34,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $email_body = '';
     $email_body .= "Name: ".$name."\n";
     $email_body .= "Email: ".$email."\n";
+    $email_body .= "Suggest Item\n";
+    $email_body .= "Category: ".$category."\n";
+    $email_body .= "Title: ".$title."\n";
+    $email_body .= "Format: ".$format."\n";
+    $email_body .= "Genre: ".$genre."\n";
+    $email_body .= "Year: ".$year."\n";
     $email_body .= "Details: ".$details."\n";
     
     
