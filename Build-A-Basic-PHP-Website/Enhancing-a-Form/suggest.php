@@ -3,6 +3,12 @@
 if($_SERVER["REQUEST_METHOD"] == "POST"){ 
     $name = trim(filter_input(INPUT_POST,"name",FILTER_SANITIZE_STRING));
     $email = trim(filter_input(INPUT_POST,"email",FILTER_SANITIZE_EMAIL));
+    $category = trim(filter_input(INPUT_POST,"category",FILTER_SANITIZE_STRING));
+    $title = trim(filter_input(INPUT_POST,"title",FILTER_SANITIZE_STRING));
+    $format = trim(filter_input(INPUT_POST,"format",FILTER_SANITIZE_STRING));
+    $genre = trim(filter_input(INPUT_POST,"genre",FILTER_SANITIZE_STRING));
+    $year = trim(filter_input(INPUT_POST,"year",FILTER_SANITIZE_STRING));
+    
     $details = trim(filter_input(INPUT_POST,"details",FILTER_SANITIZE_SPECIAL_CHARS));
 
     //value validation
@@ -70,11 +76,11 @@ include("inc/header.php");
         <form method="post" action="suggest.php">
             <table>
                 <tr>
-                    <th><label for="name_id">Name</label></th>
+                    <th><label for="name_id">Name (required)</label></th>
                     <td><input type="text" id="name_id" name="name" /></td>
                 </tr>
                 <tr>
-                    <th><label for="email_id">Email</label></th>
+                    <th><label for="email_id">Email (required)</label></th>
                     <td><input type="text" id="email_id" name="email" /></td>
                 </tr>
                 <tr>
@@ -88,7 +94,7 @@ include("inc/header.php");
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="title_id">Title</label></th>
+                    <th><label for="title_id">Title (required)</label></th>
                     <td><input type="text" id="title_id" name="title" /></td>
                 </tr>
                 <tr>
@@ -117,9 +123,7 @@ include("inc/header.php");
                     </td>
                 </tr>
                 <tr>
-                    <th>
-                        <label for="genre">Genre</label>
-                    </th>
+                    <th><label for="genre">Genre</label></th>
                     <td>
                         <select name="genre" id="genre">
                             <option value="">Select One</option>
