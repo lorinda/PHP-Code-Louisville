@@ -15,7 +15,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if($name == "" || $email == "" || $category == "" | $title == ""){
         $error_message =  "Please fill in the required fields: Name, Email, Category and Title";
     }
-    if($_POST["address"] != ""){
+    //Spam honeypot field
+    if(!isset($error_message) && $_POST["address"] != ""){
         $error_message = "Bad form input";
     }
     
@@ -24,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //Create a phpmailer object
     $mail = new PHPMailer;
     //valid email address? if not true
-    if(!$mail->ValidateAddress($email)){
+    if(!isset($error_message) && !$mail->ValidateAddress($email)){
         $error_message = "Invalid Email Address";
     }
     
@@ -94,7 +95,7 @@ include("inc/header.php");
                     <td><input type="text" id="email_id" name="email" /></td>
                 </tr>
                 <tr>
-                    <th><label for="category_id">Category</label></th>
+                    <th><label for="category_id">Category (required)</label></th>
                     <td><select id="category_id" name="category" >
                             <option value="">Select One</option>
                             <option value="Books">Book</option>
