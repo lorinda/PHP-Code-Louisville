@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $details = trim(filter_input(INPUT_POST,"details",FILTER_SANITIZE_SPECIAL_CHARS));
 
     //value validation
-    if($name == "" || $email == "" || $category == "" | $titles == ""){
+    if($name == "" || $email == "" || $category == "" | $title == ""){
         $error_message =  "Please fill in the required fields: Name, Email, Category and Title";
     }
     if($_POST["address"] != ""){
@@ -58,9 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         $error_message =  'Message could not be sent.';
         $error_message .= 'Mailer Error: ' . $mail->ErrorInfo;
-          
     }
-    
 }
 
 
@@ -77,7 +75,14 @@ include("inc/header.php");
         if (isset($_GET["status"]) && $_GET["status"] == "thanks"){
             echo "<p>Thanks for the email! I&rsquo;ll check out your suggestion shortly!</p>";
         }else{ ?>
-        <p>If you think there is something I&rsquo;m missing, let me know! Complete the form to send me an email</p>
+        <?php 
+            if(isset($error_message)){
+                echo "<p class='message'>".$error_message."</p>";
+            }else{
+                echo "<p>If you think there is something I&rsquo;m missing,".
+                    " let me know! Complete the form to send me an email</p>";
+            }
+        ?>
         <form method="post" action="suggest.php">
             <table>
                 <tr>
