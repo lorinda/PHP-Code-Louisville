@@ -13,12 +13,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //value validation
     if($name == "" || $email == "" || $category == "" | $titles == ""){
-        echo "Please fill in the required fields: Name, Email, Category and Title";
-        exit;
+        $error_message =  "Please fill in the required fields: Name, Email, Category and Title";
     }
     if($_POST["address"] != ""){
-        echo "Bad form input";
-        exit;
+        $error_message = "Bad form input";
     }
     
     require("inc/phpmailer/class.phpmailer.php");
@@ -27,41 +25,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $mail = new PHPMailer;
     //valid email address? if not true
     if(!$mail->ValidateAddress($email)){
-        echo "Invalid Email Address";
-        exit;
+        $error_message = "Invalid Email Address";
     }
     
-    $email_body = '';
-    $email_body .= "Name: ".$name."\n";
-    $email_body .= "Email: ".$email."\n";
-    $email_body .= "Suggest Item\n";
-    $email_body .= "Category: ".$category."\n";
-    $email_body .= "Title: ".$title."\n";
-    $email_body .= "Format: ".$format."\n";
-    $email_body .= "Genre: ".$genre."\n";
-    $email_body .= "Year: ".$year."\n";
-    $email_body .= "Details: ".$details."\n";
-    
-    
-    //Send Email
-    $mail->setFrom($email, $name);
-    $mail->addAddress('treehouse@localhost', 'Lorinda');     // Add a recipient
-    
-    $mail->isHTML(false);                                  // Set email format to HTML
+    if(!isset($error_message)){
+        $email_body = '';
+        $email_body .= "Name: ".$name."\n";
+        $email_body .= "Email: ".$email."\n";
+        $email_body .= "Suggest Item\n";
+        $email_body .= "Category: ".$category."\n";
+        $email_body .= "Title: ".$title."\n";
+        $email_body .= "Format: ".$format."\n";
+        $email_body .= "Genre: ".$genre."\n";
+        $email_body .= "Year: ".$year."\n";
+        $email_body .= "Details: ".$details."\n";
 
-    $mail->Subject = 'Personal Media Library Suggestion from '.$name;
-    $mail->Body    = $email_body;
-    
-    //calls send method
-    if(!$mail->send()) {
-        echo 'Message could not be sent.';
-        echo 'Mailer Error: ' . $mail->ErrorInfo;
-        exit;
-    } 
-    
-    //Redirect
-    header("location:suggest.php?status=thanks");
 
+        //Send Email
+        $mail->setFrom($email, $name);
+        $mail->addAddress('treehouse@localhost', 'Lorinda');     // Add a recipient
+
+        $mail->isHTML(false);                                  // Set email format to HTML
+
+        $mail->Subject = 'Personal Media Library Suggestion from '.$name;
+        $mail->Body    = $email_body;
+
+        //calls send method
+        if($mail->send()){
+            //Redirect
+            header("location:suggest.php?status=thanks");   
+            exit;
+        }
+        $error_message =  'Message could not be sent.';
+        $error_message .= 'Mailer Error: ' . $mail->ErrorInfo;
+          
+    }
+    
 }
 
 
