@@ -6,7 +6,7 @@ class Recipe
     private $ingredients = array();
     private $instructions = array();
     private $yield;
-    private $tag = array();
+    private $tags = array();
     private $source = "Alena Holligan";
     
     private $measurements = array(
@@ -63,10 +63,41 @@ class Recipe
         return $this->instructions;
     }
     
+    public function addTag($tag)
+    {
+        $this->tags[] = strtolower($tag);
+    }
+    
+    public function setYield($yield)
+    {
+        $this->yield = $yield;
+    }
+    
+    public function getYield()
+    {
+        return $this->yield;
+    }
+    
+    public function setSource($source)
+    {
+        $this->source = ucwords($source);
+    }
+    
+    public function getSource()
+    {
+        return $this->source;
+    }
+    
+    public function getTags()
+    {
+        return $this->tags;
+    }
+    
     public function displayRecipe()
     {
         return $this->title." by ". $this->source;   
     }
+    
 }
 
 
