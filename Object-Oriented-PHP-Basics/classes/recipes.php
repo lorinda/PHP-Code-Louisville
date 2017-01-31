@@ -22,6 +22,18 @@ class Recipe
         "doz"
     );
     
+    //add magic method (Constructor)
+    public function __construct($title = null)
+    {
+        $this->setTitle($title);
+    }
+
+    //add __toString Constructor
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+    
     public function setTitle($title)
     {
         if(empty($title)){
@@ -52,11 +64,6 @@ class Recipe
        
     }
     
-    //add magic method (Constructor)
-    public function __construct($title = null)
-    {
-        $this->setTitle($title);
-    }
     
     public function getIngredients()
     {
