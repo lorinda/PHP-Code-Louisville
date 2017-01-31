@@ -17,12 +17,13 @@ $recipe1->addTag("Main Course");
 
 $recipe1->setYield("6 servings");
 
+
 //Call static method
-echo Render::displayRecipe($recipe1);
+//echo Render::displayRecipe($recipe1);
 
 //add to_string method in cookbook.php to display recipe title
-echo $recipe1;
-
+echo $recipe1."\n";
+echo new Render();
 
 //Commented: Previous Echo statements
 //echo $recipe1->getTitle();
