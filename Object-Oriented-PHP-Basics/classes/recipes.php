@@ -93,10 +93,6 @@ class Recipe
         return $this->tags;
     }
     
-    public function displayRecipe()
-    {
-        return $this->title." by ". $this->source;   
-    }
     
 }
 
