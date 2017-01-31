@@ -20,6 +20,10 @@ $recipe1->setYield("6 servings");
 //Call static method
 echo Render::displayRecipe($recipe1);
 
+//add to_string method in cookbook.php to display recipe title
+echo $recipe1;
+
+
 //Commented: Previous Echo statements
 //echo $recipe1->getTitle();
 //foreach ($recipe1->getIngredients() as $ing) {
