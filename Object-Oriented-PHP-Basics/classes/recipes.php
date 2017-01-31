@@ -31,7 +31,16 @@ class Recipe
     //add __toString Constructor
     public function __toString()
     {
-        return $this->getTitle();
+        $output = "You are calling a ".__CLASS__." object with the title \"";
+        $output .= $this->getTitle()."\"";
+        //file name: basename(__FILE__) File directory: __DIR__
+        $output .= "\nIt is stored in ".basename(__FILE__);
+        $output .= " at ".__DIR__.".";
+        // __LINE__  __METHOD__
+        $output .= "\nThis display is from line ".__LINE__." in method ".__METHOD__.".";
+        $output .= "\nThe following methods are available for objects in this class:\n";
+        $output .= implode("\n", get_class_methods(__CLASS__));
+        return $output;
     }
     
     public function setTitle($title)
