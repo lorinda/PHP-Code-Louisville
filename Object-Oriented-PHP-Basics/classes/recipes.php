@@ -22,8 +22,13 @@ class Recipe
         "doz"
     );
     
-    public function setTitle($title){
+    public function setTitle($title)
+    {
+        if(empty($title)){
+            $this->title = null;
+        }else{
         $this->title = ucwords($title);//uppercase first word
+        }
     }
     
     public function getTitle()
@@ -47,6 +52,11 @@ class Recipe
        
     }
     
+    //add magic method (Constructor)
+    public function __construct($title = null)
+    {
+        $this->setTitle($title);
+    }
     
     public function getIngredients()
     {
