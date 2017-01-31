@@ -2,16 +2,13 @@
 include "classes/recipes.php";
 include "classes/render.php";
 
-$recipe1 = new Recipe();
+$recipe1 = new Recipe("my first recipe");
 $recipe1->setSource = "Grandma Holligan";
-$recipe1->setTitle("my first recipe");
 $recipe1->addIngredient("egg", 1, "doz");
 $recipe1->addIngredient("flour", 2, "cup");
 
-$recipe2 = new Recipe();
+$recipe2 = new Recipe("my second recipe");
 $recipe2->setSource = "Duncan Hines";
-$recipe2->setTitle("my second recipe");
-
 $recipe1->addInstruction("This is my first instruction");
 $recipe1->addInstruction("This is my second instruction");
 
