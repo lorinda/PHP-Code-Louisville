@@ -1,5 +1,5 @@
 <?php
-
+//for display
 class Render
 {
     public function __toString()
@@ -18,7 +18,14 @@ class Render
     public static function listRecipes($titles)
     {
         asort($titles);
-        return implode("\n", $titles);
+        $output = "";
+        foreach($titles as $key=>$title){
+            if ($output != ""){
+                $output .= "\n";
+            }
+            $output.= "[$key] $title";
+        }
+        return $output;
     }
     
     public static function listIngredients($ingredients)
