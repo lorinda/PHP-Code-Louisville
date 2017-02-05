@@ -7,18 +7,20 @@ error_reporting(1);
 //open nonexistant file. Throws Warning.
 //$file = fopen("data.txt","r");
 
-//if file can't be opened
+//Class to handle exceptions
 class myData
 {
     function getData()
     {
+        //if file can't be opened
         if(!$file = fopen("data.txt","r")){
             throw new Exception('Unable to access file');
         }    
     }
 }
-
+//Object to handle exceptions
 $data = new myData();
+
 try{
     $data->getData();
     
