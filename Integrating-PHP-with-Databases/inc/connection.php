@@ -6,7 +6,7 @@ try{
     $db = new PDO("mysql:host=localhost;dbname=database", $user, $pass);
     $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);  //throw an exception for any error
     
-}catch (Exception $e){
+}catch (Exception $e){ 
     echo "Unable to connect";
     echo $e->getMessage();
     exit;
@@ -14,7 +14,7 @@ try{
 
 try{
     //variable stores results of SELECT query
-    $results = $db->query("SELECT title, category FROM Media");
+    $results = $db->query("SELECT title, category, img FROM Media");
 }catch(Exception $e){
     echo "Unable to retrieve results";
     exit;
@@ -22,6 +22,7 @@ try{
 }
 echo "Retrieved Results";
 
-var_dump($results->fetchAll());
+//FETCH_ASSOC condenses reults to associative keys
+var_dump($results->fetchAll(PDO::FETCH_ASSOC));
 
 ?>
