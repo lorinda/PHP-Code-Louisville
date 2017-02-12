@@ -15,11 +15,13 @@ try{
 try{
     //variable stores results of SELECT query
     $results = $db->query("SELECT title, category FROM Media");
-    echo "Retrieved Results";
 }catch(Exception $e){
     echo "Unable to retrieve results";
     exit;
     
 }
+echo "Retrieved Results";
+
+var_dump($results->fetchAll());
 
 ?>
