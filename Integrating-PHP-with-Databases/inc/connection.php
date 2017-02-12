@@ -20,9 +20,11 @@ try{
     exit;
     
 }
-echo "Retrieved Results";
+//echo "Retrieved Results";
 
 //FETCH_ASSOC condenses reults to associative keys
-var_dump($results->fetchAll(PDO::FETCH_ASSOC));
+//var_dump($results->fetchAll(PDO::FETCH_ASSOC));
 
+//Generate catalog array from database PDO
+$catalog = $results->fetchAll();
 ?>
