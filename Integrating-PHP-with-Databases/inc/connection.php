@@ -12,19 +12,5 @@ try{
     exit;
 }
 
-try{
-    //variable stores results of SELECT query
-    $results = $db->query("SELECT title, category, img FROM Media");
-}catch(Exception $e){
-    echo "Unable to retrieve results";
-    exit;
-    
-}
-//echo "Retrieved Results";
 
-//FETCH_ASSOC condenses reults to associative keys
-//var_dump($results->fetchAll(PDO::FETCH_ASSOC));
-
-//Generate catalog array from database PDO
-$catalog = $results->fetchAll();
 ?>
