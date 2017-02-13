@@ -41,10 +41,11 @@ function single_item_array($id){
     //FETCH_ASSOC condenses reults to associative keys
     //var_dump($results->fetchAll(PDO::FETCH_ASSOC));
 
-    //Generate catalog array from database PDO
-    $catalog = $results->fetchAll();
+    //For single item, change fetchAll to fetch
+    $catalog = $results->fetch();
     return $catalog;
 }
+
 
 function get_item_html($id,$item) {
     $output = "<li><a href='details.php?id="
