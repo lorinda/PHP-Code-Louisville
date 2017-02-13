@@ -24,13 +24,17 @@ function single_item_array($id){
     include "connection.php";
     
     try{
-    //variable stores results of SELECT query
-    $results = $db->query("SELECT title, category, img, format, year, genre, publisher, isbn 
-                            FROM Media
-                            JOIN Genres ON Media.genre_id = Genres.genre_id
-                            LEFT OUTER JOIN Books ON Media.media_id = Books.media_id
-                            WHERE Media.media_id = $id"
-                         );
+        //variable stores results of SELECT query
+        $results = $db->prepare("SELECT title, category, img, format, year, genre, publisher, isbn 
+                                FROM Media
+                                JOIN Genres ON Media.genre_id = Genres.genre_id
+                                LEFT OUTER JOIN Books ON Media.media_id = Books.media_id
+                                WHERE Media.media_id = ?"
+                             );  //? unnamed placement holder
+        //Changes the ? to $id in a way that protects from SQL injection
+        $results->bindParam(1,$id,PDO::PARAM_INT); //Specifies data type for PDO
+        //Runs SQL query and loads result set into $results
+        $results->execute();
     }catch(Exception $e){
         echo "Unable to retrieve results";
         exit;
