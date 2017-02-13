@@ -48,7 +48,7 @@ function single_item_array($id){
 
 function get_item_html($id,$item) {
     $output = "<li><a href='details.php?id="
-        . $id . "'><img src='" 
+        . $item["media_id"] . "'><img src='" 
         . $item["img"] . "' alt='" 
         . $item["title"] . "' />" 
         . "<p>View Details</p>"
