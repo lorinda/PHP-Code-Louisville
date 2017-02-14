@@ -40,14 +40,30 @@ function single_item_array($id){
         exit;
     
     }
-    //echo "Retrieved Results";
-
-    //FETCH_ASSOC condenses reults to associative keys
-    //var_dump($results->fetchAll(PDO::FETCH_ASSOC));
-
-    //For single item, change fetchAll to fetch
-    $catalog = $results->fetch();
-    return $catalog;
+    
+    $item = $results->fetch();
+    if (empty($item)) return item; //early return for conditional boolean false
+    try{
+        //variable stores results of SELECT query
+        $results = $db->prepare("SELECT fullname, role 
+                                FROM Media_People
+                                JOIN People ON Media_People.people_id = People.people_id
+                                WHERE Media_People.media_id = ?"
+                             );  //? unnamed placement holder
+        //Changes the ? to $id in a way that protects from SQL injection
+        $results->bindParam(1,$id,PDO::PARAM_INT); //Specifies data type for PDO
+        //Runs SQL query and loads result set into $results
+        $results->execute();
+    }catch(Exception $e){
+        echo "Unable to retrieve results";
+        exit;
+    
+    }
+    //Fetch each person
+    while($row = $results->fetch(PDO::FETCH_ASSOC)){
+        $item[$row["role"]][] = $row["fullname"];
+    }
+    return $item;
 }
 
 function get_item_html($id,$item) {
