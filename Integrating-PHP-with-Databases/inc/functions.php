@@ -20,6 +20,30 @@ function full_catalog_array(){
     return $catalog;
 }
 
+function random_catalog_array(){
+    include "connection.php";
+    
+    try{
+    //variable stores results of SELECT query
+    $results = $db->query("SELECT media_id, title, category, img 
+                            FROM Media
+                            ORDER BY RAND()
+                            LIMIT 4");
+    }catch(Exception $e){
+        echo "Unable to retrieve results";
+        exit;
+    
+    }
+    //echo "Retrieved Results";
+
+    //FETCH_ASSOC condenses reults to associative keys
+    //var_dump($results->fetchAll(PDO::FETCH_ASSOC));
+
+    //Generate catalog array from database PDO
+    $catalog = $results->fetchAll();
+    return $catalog;
+}
+
 function single_item_array($id){
     include "connection.php";
     
@@ -66,7 +90,7 @@ function single_item_array($id){
     return $item;
 }
 
-function get_item_html($id,$item) {
+function get_item_html($item) {
     $output = "<li><a href='details.php?id="
         . $item["media_id"] . "'><img src='" 
         . $item["img"] . "' alt='" 
