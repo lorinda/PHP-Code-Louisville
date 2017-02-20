@@ -3,7 +3,19 @@ require 'inc/functions.php';
 
 $pageTitle = "Project | Time Tracker";
 $page = "projects";
-
+//Check if server request method is post
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    //trim to delete beginning and trailing whitespace
+    $title = trim(filter_input(INPUT_POST,'title',FILTER_SANITIZE_STRING));
+    $category = trim(filter_input(INPUT_POST,'category',FILTER_SANITIZE_STRING));
+    
+    if(empty($title) || empty($category)){
+        $error_message = "Please fill in the required fields: Title, Category";
+    }else {
+        echo "title = $title<br />";
+        echo "category = $category<br />";
+    }
+}
 include 'inc/header.php';
 ?>
 
@@ -11,7 +23,11 @@ include 'inc/header.php';
     <div class="col-container page-container">
         <div class="col col-70-md col-60-lg col-center">
             <h1 class="actions-header">Add Project</h1>
-
+            <?php
+            if (isset($error_message)){
+                echo "<p class='message'>$error_message</p>";
+            }
+            ?>
             <form class="form-container form-add" method="post" action="project.php">
                 <table>
                     <tr>
