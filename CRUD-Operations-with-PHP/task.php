@@ -4,6 +4,26 @@ require 'inc/functions.php';
 $pageTitle = "Task | Time Tracker";
 $page = "tasks";
 
+//Check if server request method is post
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    //trim to delete beginning and trailing whitespace
+    $project_id = trim(filter_input(INPUT_POST,'project_id',FILTER_SANITIZE_NUMBER_INT));
+    $title = trim(filter_input(INPUT_POST,'title',FILTER_SANITIZE_STRING));
+    $date = trim(filter_input(INPUT_POST,'date',FILTER_SANITIZE_STRING));
+    $time = trim(filter_input(INPUT_POST,'time',FILTER_SANITIZE_NUMBER_INT));
+    
+    if(empty($project_id) || empty($title) || empty($date) || empty($time)){
+        $error_message = "Please fill in the required fields: Project, Title, Date, Time";
+    }else {
+        if(add_task($project_id, $title, $date, $time)){
+            header('location: task_list.php');
+            exit;
+        }else{
+            $error_message = "Could not add task";
+        }
+    }
+}
+
 include 'inc/header.php';
 ?>
 
@@ -11,15 +31,26 @@ include 'inc/header.php';
     <div class="col-container page-container">
         <div class="col col-70-md col-60-lg col-center">
             <h1 class="actions-header">Add Task</h1>
+            <?php
+            if (isset($error_message)){
+                echo "<p class='message'>$error_message</p>";
+            }
+            ?>
             <form class="form-container form-add" method="post" action="task.php">
                 <table>
                     <tr>
                         <th>
-                            <label for="project_id">Project</label>
+                            <label for="project_id">Project<span class="required">*</span></label>
                         </th>
                         <td>
                             <select name="project_id" id="project_id">
                                 <option value="">Select One</option>
+                                <?php
+                                foreach(get_project_list() as $item){
+                                    echo "<option value='" . $item['project_id'] . "'>"
+                                        . $item['title'] . "</option>"; 
+                                }
+                                ?>
                             </select>
                         </td>
                     </tr>
