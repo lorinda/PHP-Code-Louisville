@@ -40,3 +40,23 @@ function add_project($title, $category){
     }
     return true;
 }
+
+function add_task($project_id, $title, $date, $time){
+    include 'connection.php';
+    
+    $sql = 'INSERT INTO tasks(project_id, title, date, time) 
+            VALUES (:project_id, :title, :date, :time)';
+    
+    try{
+        $results = $db->prepare($sql);
+        $results->bindParam(":project_id", $project_id, PDO::PARAM_INT;
+        $results->bindParam(":title", $title, PDO::PARAM_STR);
+        $results->bindParam(":date", $date, PDO::PARAM_STR);
+        $results->bindParam(":time", $time, PDO::PARAM_INT);
+        $results->execute();
+    }catch(Exception $e){
+        echo "Error!: " . $e->getMessage() . "<br />";
+        return false;
+    }
+    return true;
+}
