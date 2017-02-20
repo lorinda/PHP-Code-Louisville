@@ -9,4 +9,4 @@ try{
 }catch(Exception $e){
     die($e->getMessage().PHP_EOL);
 }
-var_dump($db);
+//var_dump($db);
