@@ -49,7 +49,7 @@ function add_task($project_id, $title, $date, $time){
     
     try{
         $results = $db->prepare($sql);
-        $results->bindParam(":project_id", $project_id, PDO::PARAM_INT;
+        $results->bindParam(":project_id", $project_id, PDO::PARAM_INT);
         $results->bindParam(":title", $title, PDO::PARAM_STR);
         $results->bindParam(":date", $date, PDO::PARAM_STR);
         $results->bindParam(":time", $time, PDO::PARAM_INT);
