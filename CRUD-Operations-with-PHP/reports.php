@@ -75,6 +75,12 @@ include 'inc/header.php';
                             echo date('m/d/Y');
                         ?>">This Month
                         </option>
+                        <option value="date:<?php
+                            echo date('m/d/Y', strtotime('first day of next month'));
+                            echo ":";
+                            echo date('m/d/Y', strtotime('last day of next month'));
+                        ?>">Next Month
+                        </option>
                     </optgroup>
                 </select>
                 <input class="button" type="submit" value="Run" />
