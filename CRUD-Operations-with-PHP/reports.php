@@ -18,7 +18,7 @@ include 'inc/header.php';
             <form class="form-container form-report" action ='reports.php' method='get'>
                 <label for='filter'>Filter:</label>
                 <select id='filter' name='filter'>
-                    <option value=''>Select One</option>
+                    <option value=''>Select Project</option>
                     <?php
                     foreach(get_project_list() as $item){
                         echo '<option value="project:' . $item['project_id'] . '">';
