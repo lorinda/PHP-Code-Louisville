@@ -3,6 +3,12 @@ require 'inc/functions.php';
 
 $pageTitle = "Project | Time Tracker";
 $page = "projects";
+
+if (isset($_GET['id]'])){
+    //return array of all project details. Use list() to return array values into individual variables
+    $project_id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    list($project_id, $title, $category) = get_project($project_id);
+}
 //Check if server request method is post
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     //trim to delete beginning and trailing whitespace
@@ -26,7 +32,13 @@ include 'inc/header.php';
 <div class="section page">
     <div class="col-container page-container">
         <div class="col col-70-md col-60-lg col-center">
-            <h1 class="actions-header">Add Project</h1>
+            <h1 class="actions-header"><?php
+                if(!empty($project_id)){
+                    echo 'Update';
+                }else{
+                    echo 'Add';
+                }
+                ?> Project</h1>
             <?php
             if (isset($error_message)){
                 echo "<p class='message'>$error_message</p>";
