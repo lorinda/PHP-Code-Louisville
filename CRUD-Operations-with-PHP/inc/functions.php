@@ -25,6 +25,9 @@ function get_task_list($filter = null){
             case 'category':
                 $where = ' WHERE category = :id';
                 break;
+            case 'date':
+                $where = ' WHERE date >= :id AND date <= :finalDate';
+                break;
         }
     }
     $orderBy = ' ORDER BY date DESC';
@@ -35,6 +38,9 @@ function get_task_list($filter = null){
         $results = $db->prepare($sql . $where . $orderBy);
         if(is_array($filter)){
             $results->bindParam(":id", $filter[1]);
+            if($filter[0] == 'date'){
+                $results->bindParam(":finalDate", $filter[2], PDO::PARAM_STR);
+            }
         }
         
         $results->execute();
