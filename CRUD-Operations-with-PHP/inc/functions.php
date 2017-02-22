@@ -139,3 +139,42 @@ function get_task($task_id){
     }
     return $results->fetch();
 }
+
+function delete_task($task_id){
+    include 'connection.php';
+    
+    $sql = 'DELETE FROM tasks
+            WHERE task_id = :id';
+    
+    try{
+        $results = $db->prepare($sql);
+        $results->bindParam(":id", $task_id, PDO::PARAM_INT);
+        $results->execute();
+    }catch(Exception $e){
+        echo "Error!: " . $e->getMessage() . "<br />";
+        return false;
+    }
+    return true;
+}
+
+function delete_project($project_id){
+    include 'connection.php';
+    
+    $sql = 'DELETE FROM projects
+            WHERE project_id = :id AND
+            project_id NOT IN (SELECT project_id FROM tasks)';
+    
+    try{
+        $results = $db->prepare($sql);
+        $results->bindParam(":id", $project_id, PDO::PARAM_INT);
+        $results->execute();
+    }catch(Exception $e){
+        echo "Error!: " . $e->getMessage() . "<br />";
+        return false;
+    }
+    if ($results->rowCount() > 0 ){
+        return true;
+    }else{
+        return false;
+    }
+}
