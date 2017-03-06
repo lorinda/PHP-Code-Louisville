@@ -38,10 +38,10 @@ $week1->addRecipe($cookbook->filterById(2));
 $week1->addRecipe($cookbook->filterById(3));
 $week1->addRecipe($cookbook->filterById(6));
 $week1->addRecipe($cookbook->filterById(16));
-echo Render::listRecipes($week1->getRecipeTitles());
+echo "<h2>" . Render::listRecipes($week1->getRecipeTitles()) . "</h2>";
 
 //echo Render::listRecipes($cookbook->getRecipeTitles());
-echo "\n\nSHOPPING LIST\n\n";
+echo "\n\nSHOPPING LIST</br>";
 echo Render::listShopping($week1->getCombinedIngredients());
 
 //echo Render::listShopping($breakfast->getCombinedIngredients());

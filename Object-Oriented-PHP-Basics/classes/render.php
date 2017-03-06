@@ -23,7 +23,7 @@ class Render
             if ($output != ""){
                 $output .= "\n";
             }
-            $output.= "[$key] $title";
+            $output.= "[$key] $title <br>";
         }
         return $output;
     }
